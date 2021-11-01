@@ -34,11 +34,8 @@ class MyWindow(QMainWindow):
             "*:hover{background: '#350032';}"
         )
 
-        self.label1.setText("first label")
-        self.label1.move(700, 50)
-
         self.b1.setText("Upload your text file")
-        self.b1.move(60, 30)
+        self.b1.move(60, 60)
         self.b1.clicked.connect(self.openFile)
         self.b1.setFixedWidth(270)
         self.b1.setFixedHeight(40)
@@ -66,7 +63,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b3.setText("Valid values")
-        self.b3.move(60, 230)
+        self.b3.move(60, 200)
         self.b3.clicked.connect(self.setText)
         self.b3.setFixedWidth(270)
         self.b3.setFixedHeight(40)
@@ -80,7 +77,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b4.setText("Invalid values")
-        self.b4.move(60, 330)
+        self.b4.move(60, 270)
         self.b4.clicked.connect(self.setText)
         self.b4.setFixedWidth(270)
         self.b4.setFixedHeight(40)
@@ -94,7 +91,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b5.setText("Clear all")
-        self.b5.move(60, 430)
+        self.b5.move(60, 340)
         self.b5.clicked.connect(self.setText)
         self.b5.setFixedWidth(270)
         self.b5.setFixedHeight(40)
@@ -108,7 +105,7 @@ class MyWindow(QMainWindow):
         )
 
         self.closeButton.setText("Close")
-        self.closeButton.move(60, 580)
+        self.closeButton.move(60, 563)
         self.closeButton.clicked.connect(self.closeApp)
         self.closeButton.setFixedWidth(270)
         self.closeButton.setFixedHeight(40)
