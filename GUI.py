@@ -12,6 +12,7 @@ class MyWindow(QMainWindow):
         super(MyWindow, self).__init__()
         self.dia = QMessageBox(self)
         self.setStyleSheet("background: #161219;")
+        self.closeButton = QtWidgets.QPushButton(self)
         self.b5 = QtWidgets.QPushButton(self)
         self.b4 = QtWidgets.QPushButton(self)
         self.b3 = QtWidgets.QPushButton(self)
@@ -37,7 +38,7 @@ class MyWindow(QMainWindow):
         self.label1.move(700, 50)
 
         self.b1.setText("Upload your text file")
-        self.b1.move(60, 70)
+        self.b1.move(60, 30)
         self.b1.clicked.connect(self.openFile)
         self.b1.setFixedWidth(270)
         self.b1.setFixedHeight(40)
@@ -51,7 +52,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b2.setText("Show all values")
-        self.b2.move(60, 170)
+        self.b2.move(60, 130)
         self.b2.clicked.connect(self.setText)
         self.b2.setFixedWidth(270)
         self.b2.setFixedHeight(40)
@@ -65,7 +66,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b3.setText("Valid values")
-        self.b3.move(60, 270)
+        self.b3.move(60, 230)
         self.b3.clicked.connect(self.setText)
         self.b3.setFixedWidth(270)
         self.b3.setFixedHeight(40)
@@ -79,7 +80,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b4.setText("Invalid values")
-        self.b4.move(60, 370)
+        self.b4.move(60, 330)
         self.b4.clicked.connect(self.setText)
         self.b4.setFixedWidth(270)
         self.b4.setFixedHeight(40)
@@ -93,7 +94,7 @@ class MyWindow(QMainWindow):
         )
 
         self.b5.setText("Clear all")
-        self.b5.move(60, 470)
+        self.b5.move(60, 430)
         self.b5.clicked.connect(self.setText)
         self.b5.setFixedWidth(270)
         self.b5.setFixedHeight(40)
@@ -106,8 +107,25 @@ class MyWindow(QMainWindow):
             "*:hover{background: '#BC006C';}"
         )
 
+        self.closeButton.setText("Close")
+        self.closeButton.move(60, 580)
+        self.closeButton.clicked.connect(self.closeApp)
+        self.closeButton.setFixedWidth(270)
+        self.closeButton.setFixedHeight(40)
+        self.closeButton.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.closeButton.setStyleSheet(
+            "*{border: 2px solid '#BC006C';" +
+            "border-radius: 5px;" +
+            "font-size: 22px;" +
+            "color: 'white';}" +
+            "*:hover{background: '#FC0000';}"
+        )
+
         self.dia.setStyleSheet(
             "QLabel{color:#fff;}")
+
+    def closeApp(self):
+        self.close()
 
     @staticmethod
     def openFile():
