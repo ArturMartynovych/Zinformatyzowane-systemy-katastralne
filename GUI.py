@@ -10,7 +10,6 @@ from PyQt5.QtGui import QCursor
 class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
-        self.dia = QMessageBox(self)
         self.setStyleSheet("background: #161219;")
         self.closeButton = QtWidgets.QPushButton(self)
         self.b5 = QtWidgets.QPushButton(self)
@@ -19,14 +18,14 @@ class MyWindow(QMainWindow):
         self.b2 = QtWidgets.QPushButton(self)
         self.b1 = QtWidgets.QPushButton(self)
         self.label1 = QtWidgets.QLabel(self)
-        self.setGeometry(100, 60, 800, 650)
+        self.setGeometry(100, 60, 860, 650)
         self.setWindowTitle("Zinformatyzowane systemy katastralne")
         self.textArea = QPlainTextEdit(self)
         self.initUI()
 
     def initUI(self):
-        self.textArea.resize(400, 600)
-        self.textArea.move(395, 0)
+        self.textArea.resize(400, 540)
+        self.textArea.move(400, 60)
         self.textArea.setFont(QFont("Rota"))
         self.textArea.setStyleSheet(
             "*{font-size: 22px;" +
@@ -118,8 +117,31 @@ class MyWindow(QMainWindow):
             "*:hover{background: '#FC0000';}"
         )
 
-        self.dia.setStyleSheet(
-            "QLabel{color:#fff;}")
+    def msg_box(self, text, msg_type):
+        msg = QMessageBox(self)
+        msg.setWindowTitle('Komunikat')
+        msg.setStyleSheet("QMessageBox{background-color: #161219;" + "color: white;" + "font: bold;"
+                          "width: 700px;" + "height: 500px;}" + "QLabel{background:transparent; color:#fff;" +
+                          "font-size: 15px;}"
+                          "QPushButton{width: 150px;" + "border: 2px solid '#BC006C';" +
+                          "border-radius: 3px;" +
+                          "font-size: 15px;" +
+                          "color: 'white';}" + "QPushButton:hover{background-color: '#BC006C';}")
+        msg.setText(f'{text}')
+        if msg_type == 'crit-error':
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setIcon(QMessageBox.Critical)
+        if msg_type == 'error':
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setIcon(QMessageBox.Warning)
+        if msg_type == 'info':
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setIcon(QMessageBox.Information)
+        if msg_type == 'question':
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            msg.setIcon(QMessageBox.Question)
+        msg.show()
+        return msg
 
     def closeApp(self):
         self.close()
@@ -138,7 +160,7 @@ class MyWindow(QMainWindow):
         try:
             klasouzytek = kataster.openFileKlasouzytek(filename)
         except (UnicodeDecodeError, ValueError):
-            self.dia.warning(self, "Error!", "Load a valid file!", self.dia.Ok)
+            self.msg_box("Load a valid file!", "Error!")
         else:
             valid, notValid = kataster.validItems(klasouzytek)
             if send.text() == "Show all values":
