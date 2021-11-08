@@ -119,7 +119,7 @@ class MyWindow(QMainWindow):
 
     def msg_box(self, text, msg_type):
         msg = QMessageBox(self)
-        msg.setWindowTitle('Komunikat')
+        msg.setWindowTitle(f'{msg_type}')
         msg.setStyleSheet("QMessageBox{background-color: #161219;" + "color: white;" + "font: bold;"
                           "width: 700px;" + "height: 500px;}" + "QLabel{background:transparent; color:#fff;" +
                           "font-size: 15px;}"

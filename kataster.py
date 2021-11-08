@@ -4,6 +4,7 @@ FILE = "E:\PW\ROK_3\kataster\project_1\Kontury_eksport_dz.txt"
 valid = []
 
 OFU_all = "(R|S|Ł|Ps|Br|Wsr|W|Lzr|Ls|Lz|B|Ba|Bi|Bp|Bz|K|dr|Tk|Ti|Tp|Wm|Wp|Ws|Tr|N)"
+OFU_inne = "(Ls|Lz|B|Ba|Bi|Bp|Bz|K|dr|Tk|Ti|Tp|Wm|Wp|Ws|Tr|N)"
 OFU_1 = "R|S|Br|Wsr|W|Lzr"  # for OZU R
 OFU_2 = "Ł|S|Br|Wsr|W|Lzr"  # for OZU Ł
 OFU_3 = "Ps|S|Br|Wsr|W|Lzr"  # for OZU Ps
@@ -51,7 +52,7 @@ def checkOZU_OZK(klasouzytek):
 
 def checkOFU(klasouzytek):
     for i in klasouzytek:
-        pattern = f"({start})" + f"{OFU_all}"
+        pattern = f"({start})" + f"{OFU_inne}"
         result = re.fullmatch(pattern, i)
         if result is not None:
             valid.append(result.string)
@@ -99,8 +100,8 @@ def main():
     checkOZU_OZK(klasouzytek)
     checkOFU(klasouzytek)
     checkOFU_OZU_OZK(klasouzytek)
-    notValid = sorted(list(set(klasouzytek) - set(valid)))
-    for i, line in enumerate(set(notValid)):
+    notValid = sorted(list(set(sorted(klasouzytek)) - set(sorted(valid))))
+    for i, line in enumerate(sorted(set(notValid))):
         print(i + 1, line)
 
 
