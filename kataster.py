@@ -100,8 +100,8 @@ def main():
     checkOZU_OZK(klasouzytek)
     checkOFU(klasouzytek)
     checkOFU_OZU_OZK(klasouzytek)
-    notValid = sorted(list(set(sorted(klasouzytek)) - set(sorted(valid))))
-    for i, line in enumerate(sorted(set(notValid))):
+    notValid = sorted(set(klasouzytek) - set(valid))
+    for i, line in enumerate(set(notValid)):
         print(i + 1, line)
 
 
